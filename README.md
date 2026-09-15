@@ -53,3 +53,12 @@ Każdy push do `main` aktualizuje stronę.
 W ustawieniach repozytorium → Pages → Custom domain wpisz domenę,
 a w DNS dodaj rekordy `A` na adresy GitHub Pages (lub `CNAME` dla subdomeny).
 GitHub utworzy wtedy plik `CNAME` w repozytorium.
+
+## Uwagi techniczne
+
+- Ścieżki do zasobów są **względne**, więc strona działa zarówno pod
+  `https://<user>.github.io/mati-fizjo/`, jak i pod własną domeną.
+- Po podpięciu domeny zaktualizuj `og:url` i `og:image` w `index.html`.
+- Jeśli `git` zwraca błąd o licencji Xcode, użyj:
+  `sudo xcodebuild -license accept` albo
+  `sudo xcode-select -s /Library/Developer/CommandLineTools`.
