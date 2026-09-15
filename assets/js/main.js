@@ -1,6 +1,50 @@
-/* Mateusz Brzeziński — fizjoterapia dziecięca */
+/* Mateusz Brzeziński, fizjoterapia dziecięca */
 (function () {
   'use strict';
+
+  /* ---- Pojawianie się sekcji ----
+     Najpierw, w osobnym bloku: gdyby cokolwiek niżej rzuciło wyjątkiem,
+     treść i tak zostanie odsłonięta.
+     Zamiatanie po scrollu zamiast IntersectionObserver: element przeskoczony
+     jednym skokiem (kotwica, przywrócona pozycja, szybki flick) nigdy nie
+     dostaje callbacku z IO i zostałby na stałe niewidoczny. */
+  try {
+    var pending = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduced) {
+      pending.forEach(function (el) { el.classList.add('is-in'); });
+      pending = [];
+    } else {
+      // Bez rAF-owego throttlingu: w nieaktywnej karcie rAF bywa wstrzymany,
+      // co zamroziłoby licznik na stałe. Lista i tak topnieje do zera.
+      var sweep = function () {
+        var limit = window.innerHeight * 0.88;
+        pending = pending.filter(function (el) {
+          if (el.getBoundingClientRect().top >= limit) return true;
+          el.classList.add('is-in');
+          return false;
+        });
+        if (!pending.length) {
+          window.removeEventListener('scroll', sweep);
+          window.removeEventListener('resize', sweep);
+          window.removeEventListener('load', sweep);
+          window.removeEventListener('hashchange', sweep);
+        }
+      };
+      window.addEventListener('scroll', sweep, { passive: true });
+      window.addEventListener('resize', sweep);
+      // Skok do #kotwicy przy wczytaniu dzieje się PO tym skrypcie i bywa, że
+      // nie generuje zdarzenia scroll, więc zamiatamy też po ułożeniu strony.
+      window.addEventListener('load', sweep);
+      window.addEventListener('hashchange', sweep);
+      sweep();
+    }
+  } catch (e) {
+    Array.prototype.forEach.call(document.querySelectorAll('.reveal'), function (el) {
+      el.classList.add('is-in');
+    });
+  }
 
   /* ---- Rok w stopce ---- */
   var year = document.getElementById('year');
@@ -19,10 +63,16 @@
   /* ---- Menu mobilne ---- */
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
+  var mobile = window.matchMedia('(max-width: 860px)');
   if (toggle && links) {
-    var setOpen = function (open) {
+    var setOpen = function (open, refocus) {
       toggle.setAttribute('aria-expanded', String(open));
       links.classList.toggle('is-open', open);
+      // Nie polegaj na opóźnionym przejściu visibility: inert natychmiast
+      // wyjmuje zamknięte menu z kolejności tabulacji i z drzewa dostępności.
+      if (mobile.matches) links.toggleAttribute('inert', !open);
+      else links.removeAttribute('inert');
+      if (!open && refocus) toggle.focus();
     };
     toggle.addEventListener('click', function () {
       setOpen(toggle.getAttribute('aria-expanded') !== 'true');
@@ -31,43 +81,25 @@
       if (e.target.closest('a')) setOpen(false);
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key !== 'Escape') return;
+      var wasOpen = toggle.getAttribute('aria-expanded') === 'true';
+      setOpen(false, wasOpen);
     });
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 860) setOpen(false);
-    });
-  }
-
-  /* ---- Pojawianie się sekcji ---- */
-  var targets = document.querySelectorAll('.reveal');
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (reduced || !('IntersectionObserver' in window)) {
-    targets.forEach(function (el) { el.classList.add('is-in'); });
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry, i) {
-        // Ujawnij też elementy, które przewinęliśmy w całości (np. skok przez #kotwicę).
-        if (!entry.isIntersecting && entry.boundingClientRect.top > 0) return;
-        var el = entry.target;
-        el.style.transitionDelay = Math.min(i * 70, 210) + 'ms';
-        el.classList.add('is-in');
-        io.unobserve(el);
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
-    targets.forEach(function (el) { io.observe(el); });
+    setOpen(false);
+    var syncMobile = function () { setOpen(false); };
+    if (mobile.addEventListener) mobile.addEventListener('change', syncMobile);
+    else if (mobile.addListener) mobile.addListener(syncMobile);
   }
 
   /* ---- Placeholder rezerwacji: nie prowadzi donikąd, dopóki nie ma linku ---- */
-  document.querySelectorAll('[data-ph-link]').forEach(function (el) {
+  Array.prototype.forEach.call(document.querySelectorAll('[data-ph-link]'), function (el) {
     el.addEventListener('click', function (e) {
-      if (el.getAttribute('href') === '#') {
-        e.preventDefault();
-        var hint = el.parentElement.querySelector('.contact-hint .ph');
-        if (hint) { hint.animate(
-          [{ opacity: 1 }, { opacity: .35 }, { opacity: 1 }],
-          { duration: 600, iterations: 2 }
-        ); }
+      if (el.getAttribute('href') !== '#') return;
+      e.preventDefault();
+      var hint = document.querySelector('.contact-hint .ph');
+      if (hint && typeof hint.animate === 'function') {
+        hint.animate([{ opacity: 1 }, { opacity: .35 }, { opacity: 1 }],
+                     { duration: 600, iterations: 2 });
       }
     });
   });

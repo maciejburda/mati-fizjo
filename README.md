@@ -1,6 +1,6 @@
-# Mateusz Brzeziński — fizjoterapia dziecięca, Gdańsk
+# Mateusz Brzeziński, fizjoterapia dziecięca, Gdańsk
 
-Statyczna strona wizytówka. Bez zależności, bez builda — czysty HTML, CSS i odrobina JS.
+Statyczna strona wizytówka. Bez zależności, bez builda, czysty HTML, CSS i odrobina JS.
 
 ## Struktura
 
@@ -22,7 +22,7 @@ W treści są wyraźnie oznaczone miejsca (`[W NAWIASACH KWADRATOWYCH]`, klasa `
 | `[ADRES GABINETU]`      | sekcja Kontakt          |
 | `[GODZINY PRZYJĘĆ]`     | sekcja Kontakt          |
 | `[OBSZAR DOJAZDU]`      | sekcja Cennik           |
-| `[WKLEJ LINK DO REZERWACJI — np. Booksy]` | sekcja Kontakt |
+| `[WKLEJ LINK DO REZERWACJI, np. Booksy]` | sekcja Kontakt |
 
 Po wpisaniu prawdziwej wartości usuń `<span class="ph">…</span>` i zostaw sam tekst.
 Dla telefonu i e-maila warto zamienić je na odnośniki:
