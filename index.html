@@ -44,10 +44,19 @@
       <a class="btn btn-primary btn-sm nav-cta" href="#kontakt">Umów wizytę</a>
     </nav>
 
-    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
-      <span class="sr-only">Menu</span>
-      <span class="bars" aria-hidden="true"><i></i><i></i></span>
-    </button>
+    <div class="head-actions">
+      <!-- UZUPEŁNIJ: po wpisaniu numeru zmień href na "tel:+48XXXXXXXXX" i usuń data-tel-placeholder.
+           Do tego czasu przycisk prowadzi do sekcji Kontakt, więc nigdzie nie gubi użytkownika. -->
+      <a class="btn btn-ghost btn-sm head-tel" href="#kontakt" aria-label="Zadzwoń" data-tel-placeholder>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 3.5h3l1.6 4-2 1.4a12 12 0 0 0 6 6l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2C10.5 19.2 4.8 13.5 3.5 5.7A2 2 0 0 1 5.5 3.5Z"/></svg>
+        <span>Zadzwoń</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
+        <span class="sr-only">Menu</span>
+        <span class="bars" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -58,7 +67,7 @@
     <div class="shell hero-grid">
       <div class="hero-copy reveal">
         <p class="eyebrow">Fizjoterapia dziecięca · Gdańsk</p>
-        <h1>Każde dziecko rozwija się w&nbsp;swoim tempie.<br><em>Pomagam mu je znaleźć.</em></h1>
+        <h1>Każde dziecko rozwija się w&nbsp;swoim tempie.<br><em>Pomagam mu je&nbsp;znaleźć.</em></h1>
         <p class="lead">Jestem magistrem fizjoterapii z&nbsp;9-letnim doświadczeniem. Pracuję z&nbsp;niemowlętami od pierwszych dni życia i&nbsp;z&nbsp;dziećmi aż do końca wieku szkolnego, w&nbsp;gabinecie w&nbsp;Gdańsku oraz podczas wizyt domowych.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#kontakt">Umów wizytę</a>
@@ -71,7 +80,7 @@
              alt="Mateusz Brzeziński podczas terapii z niemowlęciem leżącym na macie" fetchpriority="high">
         <figcaption class="hero-badge">
           <span class="dot" aria-hidden="true"></span>
-          Komfort i&nbsp;poczucie bezpieczeństwa dziecka są dla mnie najważniejsze
+          Terapię dobieram do etapu rozwoju dziecka, nie do metryki
         </figcaption>
       </figure>
     </div>
@@ -80,7 +89,7 @@
       <ul class="creds reveal">
         <li><b>9 lat</b><span>doświadczenia w&nbsp;pracy z&nbsp;dziećmi</span></li>
         <li><b>AWFiS Gdańsk</b><span>studia II stopnia, mgr fizjoterapii</span></li>
-        <li><b>5 metod</b><span>m.in. NDT-Bobath i&nbsp;praca na&nbsp;powięzi</span></li>
+        <li><b>od 2023</b><span>w Ośrodku Wczesnej Interwencji w&nbsp;Gdańsku</span></li>
         <li><b>60 minut</b><span>tyle trwa każda wizyta</span></li>
       </ul>
     </div>
@@ -237,7 +246,8 @@
         <p class="eyebrow">Kontakt</p>
         <h2>Umówmy pierwszą wizytę</h2>
         <p class="lead">Najprościej zarezerwować termin online. Jeśli masz pytania przed pierwszą wizytą, zadzwoń albo napisz. Chętnie podpowiem, czy i&nbsp;kiedy warto przyjść.</p>
-        <a class="btn btn-primary btn-lg" href="#" data-ph-link>Rezerwacja online</a>
+        <!-- UZUPEŁNIJ: zamień na <a class="btn btn-primary btn-lg" href="ADRES_REZERWACJI">Rezerwacja online</a> -->
+        <button class="btn btn-primary btn-lg" type="button" data-ph-link>Rezerwacja online</button>
         <p class="contact-hint"><span class="ph">[WKLEJ LINK DO REZERWACJI, np. Booksy]</span></p>
       </div>
 

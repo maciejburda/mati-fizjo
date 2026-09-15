@@ -157,7 +157,7 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
 .brand-name { font-family: var(--serif); font-size: 1.18rem; letter-spacing: -0.01em; }
 .brand-role { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
 
-.nav-links { display: flex; align-items: center; gap: clamp(1.1rem, 2.4vw, 2.1rem); }
+.nav-links { display: flex; align-items: center; margin-left: auto; gap: clamp(1.1rem, 2.4vw, 2.1rem); }
 .nav-links > a:not(.btn) {
   position: relative; text-decoration: none; color: var(--ink-2);
   font-size: .97rem; font-weight: 500; padding-block: .35rem;
@@ -170,6 +170,13 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
 }
 .nav-links > a:not(.btn):hover { color: var(--ink); }
 .nav-links > a:not(.btn):hover::after { scale: 1 1; }
+
+.head-actions { display: flex; align-items: center; gap: .55rem; flex: none; }
+.head-tel { gap: .45rem; }
+.head-tel svg {
+  width: 17px; height: 17px; flex: none;
+  fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+}
 
 .nav-toggle {
   display: none; width: 46px; height: 46px; flex: none;
@@ -445,7 +452,6 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
   .nav-cta { margin-top: 1.1rem; }
 
   .hero-grid, .about-grid, .contact-grid, .stage-grid { grid-template-columns: minmax(0, 1fr); }
-  .hero-media { order: -1; }
   .hero-media img { height: clamp(300px, 62vw, 420px); }
   .hero-badge { position: static; max-width: none; margin-top: 1rem; }
   .creds { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.6rem; }
@@ -458,8 +464,14 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
   .method-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .price-grid { grid-template-columns: minmax(0, 1fr); }
   .btn { width: 100%; }
+  .head-actions .btn { width: auto; }
+  .head-actions .head-tel { width: 46px; padding: 0; }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .brand-role { display: none; }
+  .head-tel span {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
   .foot-inner { flex-direction: column; align-items: flex-start; }
 }
 

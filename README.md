@@ -23,6 +23,7 @@ W treści są wyraźnie oznaczone miejsca (`[W NAWIASACH KWADRATOWYCH]`, klasa `
 | `[GODZINY PRZYJĘĆ]`     | sekcja Kontakt          |
 | `[OBSZAR DOJAZDU]`      | sekcja Cennik           |
 | `[WKLEJ LINK DO REZERWACJI, np. Booksy]` | sekcja Kontakt |
+| telefon w nagłówku      | `.head-tel`, atrybut `href` |
 
 Po wpisaniu prawdziwej wartości usuń `<span class="ph">…</span>` i zostaw sam tekst.
 Dla telefonu i e-maila warto zamienić je na odnośniki:

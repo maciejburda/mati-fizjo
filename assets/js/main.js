@@ -94,7 +94,6 @@
   /* ---- Placeholder rezerwacji: nie prowadzi donikąd, dopóki nie ma linku ---- */
   Array.prototype.forEach.call(document.querySelectorAll('[data-ph-link]'), function (el) {
     el.addEventListener('click', function (e) {
-      if (el.getAttribute('href') !== '#') return;
       e.preventDefault();
       var hint = document.querySelector('.contact-hint .ph');
       if (hint && typeof hint.animate === 'function') {
