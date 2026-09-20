@@ -11,16 +11,6 @@ assets/js/main.js       menu mobilne, nagłówek, animacje wejścia
 assets/img/             zdjęcia
 ```
 
-## Do uzupełnienia
-
-Został jeden placeholder (klasa `.ph`, tekst w nawiasach kwadratowych):
-
-| Placeholder        | Gdzie         |
-| ------------------ | ------------- |
-| `[OBSZAR DOJAZDU]` | sekcja Cennik, karta wizyty domowej |
-
-Po wpisaniu wartości usuń `<span class="ph">…</span>` i zostaw sam tekst.
-
 ## Dane kontaktowe
 
 Wpisane na stałe w `index.html` w trzech miejscach, które trzeba zmienić razem:
