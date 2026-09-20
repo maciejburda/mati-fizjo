@@ -110,12 +110,17 @@
       });
     };
 
-    var applyChoice = function (v) {
+    var applyChoice = function (v, fromClick) {
       if (typeof window.gtag !== 'function') return;
+      var granted = v === 'tak';
       window.gtag('consent', 'update', {
-        'analytics_storage': v === 'tak' ? 'granted' : 'denied'
+        'analytics_storage': granted ? 'granted' : 'denied'
       });
-      if (v !== 'tak') dropGaCookies();
+      if (!granted) { dropGaCookies(); return; }
+      // page_view poleciało już w trybie odmowy i samo się nie powtórzy.
+      // Bez tego na stronie jednoekranowej zgoda nie dałaby Google żadnej
+      // pełnej odsłony, bo kolejnych przeładowań po prostu nie ma.
+      if (fromClick) window.gtag('event', 'page_view');
     };
 
     if (!readChoice()) consentBox.hidden = false;
@@ -125,7 +130,7 @@
       if (!btn) return;
       var v = btn.getAttribute('data-consent');
       saveChoice(v);
-      applyChoice(v);
+      applyChoice(v, true);
       consentBox.hidden = true;
     });
 
