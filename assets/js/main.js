@@ -91,4 +91,53 @@
     else if (mobile.addListener) mobile.addListener(syncMobile);
   }
 
+  /* ---- Zgoda na statystyki (Google Consent Mode v2) ----
+     GA startuje z analytics_storage=denied (ustawione w <head>), więc do czasu
+     kliknięcia nie zapisuje cookies. Tutaj tylko zbieramy i zapamiętujemy wybór. */
+  var consentBox = document.getElementById('consent');
+  if (consentBox) {
+    var KEY = 'zgoda-analityka';
+    var readChoice = function () { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+    var saveChoice = function (v) { try { localStorage.setItem(KEY, v); } catch (e) {} };
+
+    var dropGaCookies = function () {
+      var host = location.hostname.replace(/^www\./, '');
+      document.cookie.split(';').forEach(function (part) {
+        var name = part.split('=')[0].trim();
+        if (!/^_ga/.test(name)) return;
+        document.cookie = name + '=; Max-Age=0; path=/';
+        document.cookie = name + '=; Max-Age=0; path=/; domain=.' + host;
+      });
+    };
+
+    var applyChoice = function (v) {
+      if (typeof window.gtag !== 'function') return;
+      window.gtag('consent', 'update', {
+        'analytics_storage': v === 'tak' ? 'granted' : 'denied'
+      });
+      if (v !== 'tak') dropGaCookies();
+    };
+
+    if (!readChoice()) consentBox.hidden = false;
+
+    consentBox.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-consent]');
+      if (!btn) return;
+      var v = btn.getAttribute('data-consent');
+      saveChoice(v);
+      applyChoice(v);
+      consentBox.hidden = true;
+    });
+
+    var reopen = document.getElementById('consentReopen');
+    if (reopen) {
+      reopen.addEventListener('click', function (e) {
+        e.preventDefault();
+        consentBox.hidden = false;
+        var first = consentBox.querySelector('[data-consent]');
+        if (first) first.focus();
+      });
+    }
+  }
+
 })();

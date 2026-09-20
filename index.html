@@ -5,14 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3QTL1RMF05"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
+  // Domyślnie odrzucone: GA nie zapisze żadnego cookie do czasu zgody.
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+
+  // Odtwórz wcześniejszy wybór, zanim GA wystartuje.
+  try {
+    if (localStorage.getItem('zgoda-analityka') === 'tak') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    }
+  } catch (e) {}
+
+  gtag('js', new Date());
   gtag('config', 'G-3QTL1RMF05');
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3QTL1RMF05"></script>
 <title>Mateusz Brzeziński · fizjoterapia dziecięca, Gdańsk</title>
 <meta name="description" content="Fizjoterapia dziecięca w Gdańsku. Mgr fizjoterapii z 9-letnim doświadczeniem. Niemowlęta od pierwszych dni życia i dzieci w wieku szkolnym. Terapia NDT-Bobath, praca na powięzi, techniki manualne. Gabinet i wizyty domowe.">
 <meta name="theme-color" content="#f9f6f1">
@@ -292,6 +307,7 @@
       <a href="#jak-pracuje">Jak pracuję</a>
       <a href="#cennik">Cennik</a>
       <a href="#kontakt">Kontakt</a>
+      <a href="#" id="consentReopen">Ustawienia cookies</a>
     </nav>
     <p class="foot-legal">© <span id="year">2026</span> Mateusz Brzeziński</p>
   </div>
@@ -332,6 +348,19 @@
   }
 }
 </script>
+
+<div class="consent" id="consent" role="dialog" aria-labelledby="consentTitle" hidden>
+  <div class="consent-inner">
+    <div>
+      <p class="consent-title" id="consentTitle">Statystyki odwiedzin</p>
+      <p class="consent-text">Używam Google Analytics, żeby wiedzieć, ile osób odwiedza stronę. Zapisuje on pliki cookie. Statystyki są zbiorcze, nie służą do reklam ani do identyfikowania osób. Bez zgody nie zapisuję nic.</p>
+    </div>
+    <div class="consent-actions">
+      <button class="btn btn-primary btn-sm" type="button" data-consent="tak">Zgadzam się</button>
+      <button class="btn btn-ghost btn-sm" type="button" data-consent="nie">Nie zgadzam się</button>
+    </div>
+  </div>
+</div>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>
