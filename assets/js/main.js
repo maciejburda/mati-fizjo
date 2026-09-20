@@ -144,5 +144,18 @@
       });
     }
   }
+  /* ---- Zdarzenie: kliknięcie w rezerwację ----
+     Booksy stoi na innej domenie, więc GA nie policzy tego samo z siebie.
+     Zdarzenie leci też przy odrzuconej zgodzie, ale wtedy jako ping bez
+     cookies (gcs=G100), zgodnie z trybem zgody ustawionym w <head>. */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[data-booking]');
+    if (!link) return;
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', 'rezerwacja_klik', {
+      miejsce: link.getAttribute('data-booking'),
+      link_url: link.href
+    });
+  });
 
 })();
