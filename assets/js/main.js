@@ -91,15 +91,4 @@
     else if (mobile.addListener) mobile.addListener(syncMobile);
   }
 
-  /* ---- Placeholder rezerwacji: nie prowadzi donikąd, dopóki nie ma linku ---- */
-  Array.prototype.forEach.call(document.querySelectorAll('[data-ph-link]'), function (el) {
-    el.addEventListener('click', function (e) {
-      e.preventDefault();
-      var hint = document.querySelector('.contact-hint .ph');
-      if (hint && typeof hint.animate === 'function') {
-        hint.animate([{ opacity: 1 }, { opacity: .35 }, { opacity: 1 }],
-                     { duration: 600, iterations: 2 });
-      }
-    });
-  });
 })();

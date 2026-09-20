@@ -13,28 +13,21 @@ assets/img/             zdjęcia
 
 ## Do uzupełnienia
 
-W treści są wyraźnie oznaczone miejsca (`[W NAWIASACH KWADRATOWYCH]`, klasa `.ph`):
+Został jeden placeholder (klasa `.ph`, tekst w nawiasach kwadratowych):
 
-| Placeholder             | Gdzie                   |
-| ----------------------- | ----------------------- |
-| `[NUMER TELEFONU]`      | sekcja Kontakt          |
-| `[ADRES E-MAIL]`        | sekcja Kontakt          |
-| `[ADRES GABINETU]`      | sekcja Kontakt          |
-| `[GODZINY PRZYJĘĆ]`     | sekcja Kontakt          |
-| `[OBSZAR DOJAZDU]`      | sekcja Cennik           |
-| `[WKLEJ LINK DO REZERWACJI, np. Booksy]` | sekcja Kontakt |
-| telefon w nagłówku      | `.head-tel`, atrybut `href` |
+| Placeholder        | Gdzie         |
+| ------------------ | ------------- |
+| `[OBSZAR DOJAZDU]` | sekcja Cennik, karta wizyty domowej |
 
-Po wpisaniu prawdziwej wartości usuń `<span class="ph">…</span>` i zostaw sam tekst.
-Dla telefonu i e-maila warto zamienić je na odnośniki:
+Po wpisaniu wartości usuń `<span class="ph">…</span>` i zostaw sam tekst.
 
-```html
-<a href="tel:+48000000000">+48 000 000 000</a>
-<a href="mailto:kontakt@example.pl">kontakt@example.pl</a>
-```
+## Dane kontaktowe
 
-Link do rezerwacji online: podmień `href="#"` przy przycisku „Rezerwacja online”
-i usuń atrybut `data-ph-link`.
+Wpisane na stałe w `index.html` w trzech miejscach, które trzeba zmienić razem:
+
+- przycisk w nagłówku (`.head-tel`): `tel:` + widoczny numer + `aria-label`
+- lista w sekcji Kontakt: telefon, e-mail, adres, link do Booksy
+- blok `application/ld+json` na dole pliku (dane strukturalne dla Google)
 
 ## Podgląd lokalny
 

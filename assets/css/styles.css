@@ -382,8 +382,6 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
 }
 .contact-copy h2 { margin-bottom: 1.3rem; }
 .contact-copy .lead { max-width: 42ch; margin-bottom: 2.1rem; }
-.contact-hint { margin-top: .9rem; font-size: .88rem; color: var(--ink-3); }
-.contact-hint .ph { white-space: normal; }
 
 .contact-list { display: grid; gap: .6rem; }
 .contact-list li {
@@ -398,7 +396,9 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
 .contact-list div { display: flex; flex-direction: column; gap: .18rem; min-width: 0; }
 .contact-list b { font-size: .78rem; font-weight: 600; letter-spacing: .11em; text-transform: uppercase; color: var(--ink-3); }
 .contact-list .ph { white-space: normal; }
-.contact-list div > span { align-self: flex-start; }
+.contact-list div > :not(b) { align-self: flex-start; }
+.contact-list a { color: var(--ink); text-decoration-color: color-mix(in oklab, var(--ink) 35%, transparent); text-underline-offset: 4px; }
+.contact-list a:hover { color: var(--clay-deep); text-decoration-color: currentColor; }
 
 /* ============================================================
    Stopka
@@ -450,6 +450,9 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
   .nav-links > a:not(.btn) { padding: .95rem 0; border-bottom: 1px solid var(--line-soft); font-size: 1.05rem; }
   .nav-links > a:not(.btn)::after { display: none; }
   .nav-cta { margin-top: 1.1rem; }
+
+  /* Telefon, e-mail i Booksy to na telefonie główne akcje: pełny cel dotykowy. */
+  .contact-list a { display: inline-flex; align-items: center; min-height: 44px; }
 
   .hero-grid, .about-grid, .contact-grid, .stage-grid { grid-template-columns: minmax(0, 1fr); }
   .hero-media img { height: clamp(300px, 62vw, 420px); }
