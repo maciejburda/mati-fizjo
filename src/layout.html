@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google tag (gtag.js) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Domyślnie odrzucone: GA nie zapisze żadnego cookie do czasu zgody.
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+
+  // Odtwórz wcześniejszy wybór, zanim GA wystartuje.
+  try {
+    if (localStorage.getItem('zgoda-analityka') === 'tak') {
+      gtag('consent', 'update', { 'analytics_storage': 'granted' });
+    }
+  } catch (e) {}
+
+  gtag('js', new Date());
+  gtag('config', 'G-3QTL1RMF05');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3QTL1RMF05"></script>
+
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<meta name="theme-color" content="#f9f6f1">
+{{ROBOTS}}
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="Mateusz Brzeziński, fizjoterapia dziecięca">
+<meta property="og:title" content="{{OGTITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:image" content="https://brzezinskifizjo.pl/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%237e4d36'/><text x='50' y='69' font-family='Georgia,serif' font-size='54' fill='%23f9f6f1' text-anchor='middle'>M</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Karla:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Przejdź do treści</a>
+
+<header class="site-head" id="siteHead">
+  <div class="shell head-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">MB</span>
+      <span class="brand-text">
+        <span class="brand-name">Mateusz Brzeziński</span>
+        <span class="brand-role">mgr fizjoterapii · Gdańsk</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Menu główne">
+      <a href="fizjoterapia-niemowlat.html"{{A_NIEMOWLETA}}>Niemowlęta</a>
+      <a href="fizjoterapia-dzieci.html"{{A_DZIECI}}>Starsze dzieci</a>
+      <a href="cennik.html"{{A_CENNIK}}>Cennik</a>
+      <a href="o-mnie.html"{{A_OMNIE}}>O mnie</a>
+      <a href="kontakt.html"{{A_KONTAKT}}>Kontakt</a>
+      <a class="btn btn-primary btn-sm nav-cta" href="kontakt.html">Umów wizytę</a>
+    </nav>
+
+    <div class="head-actions">
+      <a class="btn btn-ghost btn-sm head-tel" href="tel:+48662122984" aria-label="Zadzwoń: +48 662 122 984">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 3.5h3l1.6 4-2 1.4a12 12 0 0 0 6 6l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2C10.5 19.2 4.8 13.5 3.5 5.7A2 2 0 0 1 5.5 3.5Z"/></svg>
+        <span>662&nbsp;122&nbsp;984</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
+        <span class="sr-only">Menu</span>
+        <span class="bars" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+{{BODY}}
+</main>
+
+<footer class="site-foot">
+  <div class="shell">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <p class="foot-name">Mateusz Brzeziński</p>
+        <p class="foot-role">Fizjoterapia dziecięca · Gdańsk</p>
+        <p class="foot-contact">
+          <a href="tel:+48662122984">+48 662 122 984</a><br>
+          <a href="mailto:mt.brzezinski@gmail.com">mt.brzezinski@gmail.com</a><br>
+          ul. Wita Stwosza 31A/31, 80-312 Gdańsk
+        </p>
+      </div>
+
+      <nav class="foot-col" aria-label="Terapia">
+        <p class="foot-title">Terapia</p>
+        <a href="fizjoterapia-niemowlat.html">Fizjoterapia niemowląt</a>
+        <a href="fizjoterapia-dzieci.html">Fizjoterapia starszych dzieci</a>
+        <a href="metody-terapii.html">Metody terapii</a>
+        <a href="wizyty-domowe.html">Wizyty domowe</a>
+      </nav>
+
+      <nav class="foot-col" aria-label="Informacje">
+        <p class="foot-title">Informacje</p>
+        <a href="o-mnie.html">O mnie</a>
+        <a href="cennik.html">Cennik</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+        <a href="#" id="consentReopen">Ustawienia cookies</a>
+      </nav>
+    </div>
+
+    <p class="foot-legal">© <span id="year">2026</span> Mateusz Brzeziński</p>
+  </div>
+</footer>
+
+{{JSONLD}}
+
+<div class="consent" id="consent" role="dialog" aria-labelledby="consentTitle" hidden>
+  <div class="consent-inner">
+    <div>
+      <p class="consent-title" id="consentTitle">Statystyki odwiedzin</p>
+      <p class="consent-text">Używam Google Analytics, żeby wiedzieć, ile osób odwiedza stronę. Zapisuje on pliki cookie. Statystyki są zbiorcze, nie służą do reklam ani do identyfikowania osób. Bez zgody nie zapisuję nic. <a href="polityka-prywatnosci.html">Polityka prywatności</a></p>
+    </div>
+    <div class="consent-actions">
+      <button class="btn btn-primary btn-sm" type="button" data-consent="tak">Zgadzam się</button>
+      <button class="btn btn-ghost btn-sm" type="button" data-consent="nie">Nie zgadzam się</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,48 +1,86 @@
-# Mateusz Brzeziński, fizjoterapia dziecięca, Gdańsk
+# Mateusz Brzeziński — fizjoterapia dziecięca, Gdańsk
 
-Statyczna strona wizytówka. Bez zależności, bez builda, czysty HTML, CSS i odrobina JS.
+Statyczna strona pod GitHub Pages. Bez frameworka, bez zależności.
+Domena: https://brzezinskifizjo.pl
+
+## Jak to jest zbudowane
+
+Stron jest dziewięć i wszystkie dzielą ten sam nagłówek, stopkę i baner zgody.
+Trzymanie tego w dziewięciu kopiach kończy się rozjechaniem, więc strony są
+składane z szablonu jednym skryptem.
+
+```
+src/layout.html      wspólna oprawa (head, nagłówek, stopka, baner)
+src/pages/*.html     treść każdej strony + nagłówek JSON z metadanymi
+build.mjs            skleja jedno z drugim
+```
+
+### Edycja treści
+
+**Edytuj pliki w `src/pages/`, nie te w katalogu głównym.** Pliki `.html`
+na górze są generowane i każde uruchomienie builda je nadpisze (mają o tym
+komentarz w pierwszej linii).
+
+```bash
+node build.mjs
+```
+
+Skrypt tworzy strony `.html` w katalogu głównym oraz `sitemap.xml`.
+Potem commit i push — GitHub Pages wdroży resztę.
+
+### Nagłówek strony
+
+Każdy plik w `src/pages/` zaczyna się blokiem JSON między `---`:
+
+```json
+{
+  "slug": "cennik",
+  "title": "tytuł w zakładce i w wynikach Google",
+  "description": "opis w wynikach wyszukiwania, do ~160 znaków",
+  "priority": "0.9",
+  "noindex": false,
+  "jsonld": { }
+}
+```
+
+`slug` to nazwa pliku wynikowego (`index` daje `index.html`).
+`noindex` wyłącza stronę z sitemapy i dodaje meta robots.
+`jsonld` trafia do strony jako dane strukturalne.
 
 ## Struktura
 
 ```
-index.html              treść strony
-assets/css/styles.css   style (tokeny kolorów i typografii na górze pliku)
-assets/js/main.js       menu mobilne, nagłówek, animacje wejścia
-assets/img/             zdjęcia
+index.html                    strona główna
+fizjoterapia-niemowlat.html   niemowlęta
+fizjoterapia-dzieci.html      dzieci przedszkolne i szkolne
+metody-terapii.html           NDT-Bobath, powięź, techniki manualne
+wizyty-domowe.html            dojazd, Trójmiasto
+cennik.html                   trzy usługi
+o-mnie.html                   doświadczenie
+kontakt.html                  telefon, adres, Booksy
+polityka-prywatnosci.html     RODO, noindex
+robots.txt / sitemap.xml      dla wyszukiwarek
 ```
 
-## Dane kontaktowe
+## Analityka
 
-Wpisane na stałe w `index.html` w trzech miejscach, które trzeba zmienić razem:
-
-- przycisk w nagłówku (`.head-tel`): `tel:` + widoczny numer + `aria-label`
-- lista w sekcji Kontakt: telefon, e-mail, adres, link do Booksy
-- blok `application/ld+json` na dole pliku (dane strukturalne dla Google)
+Google Analytics 4 (`G-3QTL1RMF05`) z Consent Mode v2. Do czasu zgody
+nie powstaje żadne cookie. Kliknięcia w rezerwację wysyłają zdarzenie
+`rezerwacja_klik` z parametrem `miejsce`.
 
 ## Podgląd lokalny
 
+Dowolny serwer statyczny na katalogu głównym, np.
+
 ```bash
-python3 -m http.server 8000
+npx --yes serve .
 ```
 
-Następnie otwórz <http://localhost:8000>.
+## Domena
 
-## Publikacja
+`brzezinskifizjo.pl` to domena główna (plik `CNAME`).
+`brzezińskifizjo.pl` przekierowuje na nią z osobnego repozytorium
+`brzezinskifizjo-redirect`.
 
-Strona jest hostowana na GitHub Pages z gałęzi `main` (katalog główny).
-Każdy push do `main` aktualizuje stronę.
-
-## Własna domena
-
-W ustawieniach repozytorium → Pages → Custom domain wpisz domenę,
-a w DNS dodaj rekordy `A` na adresy GitHub Pages (lub `CNAME` dla subdomeny).
-GitHub utworzy wtedy plik `CNAME` w repozytorium.
-
-## Uwagi techniczne
-
-- Ścieżki do zasobów są **względne**, więc strona działa zarówno pod
-  `https://<user>.github.io/mati-fizjo/`, jak i pod własną domeną.
-- Po podpięciu domeny zaktualizuj `og:url` i `og:image` w `index.html`.
-- Jeśli `git` zwraca błąd o licencji Xcode, użyj:
-  `sudo xcodebuild -license accept` albo
-  `sudo xcode-select -s /Library/Developer/CommandLineTools`.
+Jeśli `git` zwraca błąd o licencji Xcode:
+`sudo xcodebuild -license accept`

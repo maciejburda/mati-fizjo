@@ -413,6 +413,83 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
 .foot-legal { font-size: .85rem; color: color-mix(in oklab, var(--paper) 68%, transparent); }
 
 /* ============================================================
+   Strony podrzędne
+   ============================================================ */
+.page-head {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  background:
+    radial-gradient(90% 120% at 85% 0%, color-mix(in oklab, var(--clay-soft) 42%, transparent), transparent 62%),
+    radial-gradient(80% 110% at 0% 20%, color-mix(in oklab, var(--sand) 60%, transparent), transparent 60%);
+}
+.page-head h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); margin-bottom: 1.1rem; }
+.page-head .lead { max-width: 56ch; }
+
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: 1.4rem; font-size: .88rem; color: var(--ink-3); }
+.crumbs a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line); }
+.crumbs a:hover { color: var(--clay-deep); border-bottom-color: currentColor; }
+
+.section-alt { background: var(--paper-2); }
+
+/* układ: treść + kolumna boczna */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); gap: clamp(2.5rem, 5vw, 4.5rem); align-items: start; }
+.prose-wide { max-width: 72ch; }
+.method-block { margin-bottom: clamp(1.5rem, 3vw, 2.2rem); }
+
+.aside { position: sticky; top: 108px; display: flex; flex-direction: column; gap: 1.1rem; }
+.aside-card { padding: 1.6rem; background: var(--paper); border: 1px solid color-mix(in oklab, var(--clay) 38%, transparent); border-radius: var(--r-lg); box-shadow: var(--shadow-s); }
+.aside-title { font-size: .76rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .7rem; }
+.aside-price { font-size: 1rem; color: var(--ink-2); margin-bottom: .7rem; }
+.aside-price b { font-family: var(--serif); font-weight: 400; font-size: 2.3rem; letter-spacing: -0.02em; color: var(--ink); }
+.aside-price span { font-size: .9rem; color: var(--ink-3); }
+.aside-text { font-size: .94rem; color: var(--ink-2); margin-bottom: 1.2rem; }
+.aside-meta { margin-top: .9rem; font-size: .86rem; color: var(--ink-3); }
+.aside-links { display: flex; flex-direction: column; gap: .1rem; padding: 1.4rem 1.6rem; background: var(--paper-2); border: 1px solid var(--line-soft); border-radius: var(--r-lg); }
+.aside-links a { display: flex; align-items: center; min-height: 44px; padding: .45rem 0; font-size: .95rem; color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line-soft); }
+.aside-links a:last-child { border-bottom: 0; }
+.aside-links a:hover { color: var(--clay-deep); }
+
+/* kafelki wyboru na stronie głównej */
+.pick-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.1rem, 2.2vw, 1.75rem); }
+.pick { display: flex; flex-direction: column; gap: .9rem; padding: clamp(1.7rem, 2.8vw, 2.3rem); background: var(--paper-2); border: 1px solid var(--line-soft); border-radius: var(--r-lg); transition: border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease); }
+.pick:hover { border-color: color-mix(in oklab, var(--clay) 42%, transparent); transform: translateY(-3px); box-shadow: var(--shadow-m); }
+.pick h3 { font-size: 1.45rem; }
+.pick p { color: var(--ink-2); font-size: .97rem; }
+.pick-link { margin-top: auto; display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; font-size: .97rem; color: var(--clay-deep); text-decoration: none; }
+.pick-link:hover { color: var(--ink); }
+
+.method-inline { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.4rem 0; }
+.method-inline li { padding: .4rem .9rem; font-size: .9rem; background: var(--paper); border: 1px solid var(--line-soft); border-radius: 999px; color: var(--ink-2); }
+
+/* pasek wezwania na dole stron */
+.cta-band { background: var(--sand); padding-block: clamp(3rem, 6vw, 4.5rem); }
+.cta-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.8rem 2.5rem; }
+.cta-inner h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); margin-bottom: .5rem; }
+.cta-inner p { color: var(--ink-2); max-width: 46ch; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+/* stopka wielokolumnowa */
+.foot-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 3.5rem); padding-bottom: 2.2rem; }
+.foot-contact { margin-top: 1rem; font-size: .92rem; line-height: 1.8; color: color-mix(in oklab, var(--paper) 72%, transparent); }
+.foot-contact a { color: color-mix(in oklab, var(--paper) 86%, transparent); text-decoration: none; }
+.foot-contact a:hover { color: var(--paper); text-decoration: underline; }
+.foot-col { display: flex; flex-direction: column; gap: .1rem; }
+.foot-title { font-size: .76rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: color-mix(in oklab, var(--paper) 55%, transparent); margin-bottom: .7rem; }
+.foot-col a { display: inline-flex; align-items: center; min-height: 44px; font-size: .95rem; color: color-mix(in oklab, var(--paper) 80%, transparent); text-decoration: none; }
+.foot-col a:hover { color: var(--paper); text-decoration: underline; }
+.site-foot .foot-legal { padding-top: 1.6rem; border-top: 1px solid color-mix(in oklab, var(--paper) 18%, transparent); }
+
+@media (max-width: 1000px) {
+  .split { grid-template-columns: minmax(0, 1fr); }
+  .aside { position: static; }
+  .pick-grid { grid-template-columns: minmax(0, 1fr); }
+  .foot-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .foot-grid { grid-template-columns: minmax(0, 1fr); }
+  .cta-actions { width: 100%; flex-direction: column; }
+}
+
+/* ============================================================
    Strona dokumentu (polityka prywatności)
    ============================================================ */
 .prose { max-width: 68ch; }
