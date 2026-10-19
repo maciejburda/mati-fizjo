@@ -63,7 +63,7 @@
   /* ---- Menu mobilne ---- */
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
-  var mobile = window.matchMedia('(max-width: 860px)');
+  var mobile = window.matchMedia('(max-width: 1120px)');
   if (toggle && links) {
     var setOpen = function (open, refocus) {
       toggle.setAttribute('aria-expanded', String(open));

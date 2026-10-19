@@ -146,15 +146,15 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
 .site-head.is-stuck { border-bottom-color: var(--line-soft); background: color-mix(in oklab, var(--paper) 94%, transparent); }
 .head-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 78px; }
 
-.brand { display: inline-flex; align-items: center; min-height: 44px; gap: .8rem; text-decoration: none; color: var(--ink); }
-/* Znak jest rysunkiem na białym tle. mix-blend-mode wycina to tło
-   na jasnym papierze strony, bez potrzeby pliku z przezroczystością. */
+.brand { display: inline-flex; align-items: center; min-height: 44px; gap: .7rem; text-decoration: none; color: var(--ink); }
+/* Znak wchodzi jako maska, więc kolor bierze się z tokenu marki.
+   Zmiana koloru to jedna linijka, bez przerabiania pliku. */
 .brand-mark {
-  width: 46px; height: 46px; flex: none;
-  object-fit: contain;
-  mix-blend-mode: multiply;
+  height: 34px; width: 48px; flex: none;
+  background: var(--clay-deep);
+  -webkit-mask: url(../img/logo.png) center / contain no-repeat;
+  mask: url(../img/logo.png) center / contain no-repeat;
 }
-@media (prefers-reduced-transparency: reduce) { .brand-mark { mix-blend-mode: normal; } }
 .brand-text { display: flex; flex-direction: column; line-height: 1.25; }
 .brand-name { font-family: var(--serif); font-size: 1.18rem; letter-spacing: -0.01em; }
 .brand-role { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
@@ -573,7 +573,9 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
   .about-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
 }
 
-@media (max-width: 860px) {
+/* Menu zwija się wcześniej niż reszta układu: przy siedmiu pozycjach
+   poziomy pasek łamał się na dwa wiersze już przy 1070 px. */
+@media (max-width: 1120px) {
   html { scroll-padding-top: 84px; }
   .head-inner { min-height: 68px; }
   .nav-toggle { display: inline-flex; }
@@ -594,6 +596,9 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
   .nav-links > a:not(.btn)::after { display: none; }
   .nav-cta { margin-top: 1.1rem; }
 
+}
+
+@media (max-width: 860px) {
   /* Telefon, e-mail i Booksy to na telefonie główne akcje: pełny cel dotykowy. */
   .contact-list a { display: inline-flex; align-items: center; min-height: 44px; }
 
