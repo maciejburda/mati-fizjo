@@ -147,12 +147,14 @@ h1 em, h2 em { font-style: italic; color: var(--clay-deep); }
 .head-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 78px; }
 
 .brand { display: inline-flex; align-items: center; min-height: 44px; gap: .8rem; text-decoration: none; color: var(--ink); }
+/* Znak jest rysunkiem na białym tle. mix-blend-mode wycina to tło
+   na jasnym papierze strony, bez potrzeby pliku z przezroczystością. */
 .brand-mark {
-  display: grid; place-items: center; width: 42px; height: 42px; flex: none;
-  background: var(--clay-deep); color: var(--paper);
-  font-family: var(--serif); font-size: 1.02rem; letter-spacing: .02em;
-  border-radius: 12px;
+  width: 46px; height: 46px; flex: none;
+  object-fit: contain;
+  mix-blend-mode: multiply;
 }
+@media (prefers-reduced-transparency: reduce) { .brand-mark { mix-blend-mode: normal; } }
 .brand-text { display: flex; flex-direction: column; line-height: 1.25; }
 .brand-name { font-family: var(--serif); font-size: 1.18rem; letter-spacing: -0.01em; }
 .brand-role { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
